@@ -1,0 +1,13 @@
+/*custom css*/
+body {
+    font-size: 20px;
+}
+
+.list ul li {
+    border: none;
+    border-bottom: 1px solid lightgray;
+}
+
+.list ul li:nth-child(4) {
+    border-bottom: 2px solid black;
+}
