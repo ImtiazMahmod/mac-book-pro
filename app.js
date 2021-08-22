@@ -15,10 +15,18 @@ function totalPrice(){
     const deliveryChargeAmount = parseInt(deliveryCharge.innerText);
 
         
-    totalPrice.innerText = bestPriceAmount + memoryCostAmount + storageCostAmount + deliveryChargeAmount;
+    return totalPrice.innerText = bestPriceAmount + memoryCostAmount + storageCostAmount + deliveryChargeAmount;
    }
 
-//best price function
+//net-total price
+function netTotalPrice(){
+    const netTotalPrice =  document.getElementById('net-total-price');
+     const netTotal = totalPrice();
+    
+     return netTotalPrice.innerText = netTotal;
+ }
+
+ //best price function
 function bestPrice(){
     const bestPrice = document.getElementById('best-price');
     return bestPrice.innerText = '1299';
@@ -35,6 +43,7 @@ function memoryCost(memory){
         memoryCost.innerText = '180';
     }
     totalPrice();
+    netTotalPrice();
 }
 //memory event handler
 
@@ -60,6 +69,7 @@ function storageCost(storage){
        storageCost.innerText = '180';
     }
     totalPrice();
+    netTotalPrice();
 }
 //storage cost event handler
 document.getElementById('storage-256').addEventListener('click',function(){    
@@ -86,6 +96,7 @@ function deliveryOption(delivery){
        
     }
     totalPrice();
+    netTotalPrice();
 }
 
 //delivery option event handler
@@ -97,6 +108,34 @@ document.getElementById('delivery-fee').addEventListener('click',function(){
      deliveryOption('fee');         
 })
 
+
+
+//promo code handler
+
+    const couponField = document.getElementById('coupon-field');
+
+    document.getElementById('coupon').addEventListener('click',function(){  
+    const couponAdded = netTotalPrice();    
+   const  couponAddedPrice =couponAdded - (couponAdded * 0.2) ;
+
+     const netTotal =  document.getElementById('net-total-price');
+    netTotal.innerText = couponAddedPrice;
+
+    couponField.value = '';
+})
+
+couponField.addEventListener('keyup',function(event){
+    if(event.target.value == 'stevekaku'){
+        coupon.removeAttribute('disabled');
+        if(event.target.value == ''){
+            coupon.setAttribute('disabled',true);
+        }
+       
+    }   
+    else{
+        coupon.setAttribute('disabled',true);
+    }
+})
 
 
     
